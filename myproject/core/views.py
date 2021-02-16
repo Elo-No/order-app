@@ -7,6 +7,7 @@ from .serializers import CustomersSerializer
 from rest_framework import generics
 from rest_framework import status, pagination, mixins
 from rest_framework.response import Response
+from rest_framework.generics import get_object_or_404
 class UserViewSet(generics.GenericAPIView):
     queryset = Customers.objects.all()
     serializer_class = CustomersSerializer
@@ -30,8 +31,8 @@ class UserViewSet(generics.GenericAPIView):
         saved_customer = get_object_or_404(Customers.objects.all(), pk=pk)
         data = request.data.get('customer')
         serializer = CustomersSerializer(instance=saved_customer, data=data, partial=True)
-        if serializer.is_valid(raise_exception=True):
-            customer_saved = serializer.save()
+        serializer.is_valid(raise_exception=True)
+        customer_saved = serializer.save()
         return Response({"success": "Customer '{}' updated successfully".format(customer_saved.title)})
     
 
