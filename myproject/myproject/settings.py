@@ -25,8 +25,8 @@ SECRET_KEY = 'nv-ag-7gylvf^9x-5pylon39j876plpma%oejhxbzu9b#$j5bu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['farsilearn.ir','www.farsilearn.ir']
-
+ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['farsilearn.ir','www.farsilearn.ir']
 
 # Application definition
 
