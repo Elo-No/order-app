@@ -8,9 +8,12 @@ from rest_framework import generics
 from rest_framework import status, pagination, mixins
 from rest_framework.response import Response
 from rest_framework.generics import get_object_or_404
+
+
 class UserViewSet(generics.GenericAPIView):
     queryset = Customers.objects.all()
     serializer_class = CustomersSerializer
+    
     def get(self, request, format='json'):
         serializer = self.get_serializer(self.get_queryset(), many=True)
         if serializer.data:
@@ -24,11 +27,12 @@ class UserViewSet(generics.GenericAPIView):
 
     def delete(self, request, pk):
         # Get object with this pk
-        customer = get_object_or_404(Customers.objects.all(), pk=pk)
+        customer = get_object_or_404(Customers, pk=pk)
         customer.delete()
         return Response({"message": "customer with id `{}` has been deleted.".format(pk)},status=204)
+
     def put(self, request, pk):
-        saved_customer = get_object_or_404(Customers.objects.all(), pk=pk)
+        saved_customer = get_object_or_404(Customers, pk=pk)
         data = request.data.get('customer')
         serializer = CustomersSerializer(instance=saved_customer, data=data, partial=True)
         serializer.is_valid(raise_exception=True)
