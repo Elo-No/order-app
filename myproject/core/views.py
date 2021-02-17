@@ -19,6 +19,7 @@ class UserViewSet(generics.GenericAPIView):
         if serializer.data:
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.data, status=status.HTTP_404_NOT_FOUND)
+        
     def post(self, request, format='json'):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -33,11 +34,11 @@ class UserViewSet(generics.GenericAPIView):
 
     def put(self, request, pk):
         saved_customer = get_object_or_404(Customers, pk=pk)
-        data = request.data.get('customer')
-        serializer = CustomersSerializer(instance=saved_customer, data=data, partial=True)
+        
+        serializer = CustomersUpdateSerializer(instance=saved_customer, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         customer_saved = serializer.save()
-        return Response({"success": "Customer '{}' updated successfully".format(customer_saved.title)})
+        return Response({"success": "Customer '{}' updated successfully".format(customer_saved.Name)})
     
 
         
