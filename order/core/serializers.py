@@ -19,20 +19,26 @@ class CustomersSerializer(serializers.ModelSerializer):
                   'Size_Of_Product',
                   'Description',
                   'Debt_Rate',
-                  'Type_Of_Product']
+                  'Type_Of_Product',
+                  'Type_Of_Send',
+                  'Tipax_Code']
+
 
 class CustomersUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customers
         fields = [
-                #   'id',
-                  'Name',
-                  'Family',
-                  'Address',
-                  'Zip_Code',
-                  'Phone',
-                  'Phone_Whats_App',
-                  'Size_Of_Product',
-                  'Description',
-                  'Debt_Rate',
-                  'Type_Of_Product']
+            #   'id',
+            'Name',
+            'Family',
+            'Address',
+            'Zip_Code',
+            'Phone',
+            'Phone_Whats_App',
+            'Pic',
+            'Size_Of_Product',
+            'Description',
+            'Debt_Rate',
+            'Type_Of_Product',
+            'Type_Of_Send',
+            'Tipax_Code']

@@ -14,3 +14,5 @@ class Customers(models.Model):
     Description = models.TextField()
     Debt_Rate = models.FloatField()
     Type_Of_Product = models.CharField(max_length=10)
+    Type_Of_Send = models.CharField(max_length=10,null=True, blank=True)
+    Tipax_Code= models.ImageField(null=True, blank=True)
